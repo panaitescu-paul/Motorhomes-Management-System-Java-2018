@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Rental</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="/rentals/" class="page"><span>Rentals</span></a>
+        <a href="../" th:text="'Logout: ' + ${currentUser.type} + ' - ' + ${currentUser.name}" class="page btn-logout"><span>Logout</span></a>
+    </div>
+    <div class="create">
+        <h1 class="title">Add New Rental</h1>
+        <div th:if="${errorMessage}" th:utext="${errorMessage}"
+             style="color:red;font-style:italic;">
+        </div>
+
+        <form th:action="@{/rentals/create}" th:object="${rentalForm}" method="post">
+            <p class="row">
+                <span class="title">Customer:</span>
+                <span class="value">
+                    <select th:field="*{customerId}">
+                        <option value="-1">--</option>
+                        <option th:each="customer : ${customers}"
+                                th:value="${customer.id}"
+                                th:text="${customer.fullName}"></option>
+                    </select>
+                </span>
+            </p>
+            <p class="row">
+                <span class="title">Motorhome:</span>
+                <span class="value">
+                        <select th:field="*{motorhomeId}">
+                        <option value="-1">--</option>
+                        <option th:each="motorhome : ${motorhomes}"
+                                th:value="${motorhome.id}"
+                                th:text="${motorhome.fullName}"></option>
+                    </select>
+                </span>
+            </p>
+            <!--<p class="row">-->
+                <!--<table>-->
+                    <!--<tr>-->
+                        <!--<td>Customer:</td>-->
+                        <!--<td>-->
+                            <!--<select th:field="*{customerId}">-->
+                                <!--<option value="-1">&#45;&#45;</option>-->
+                                <!--<option th:each="customer : ${customers}"-->
+                                        <!--th:value="${customer.id}"-->
+                                        <!--th:text="${customer.fullName}"></option>-->
+                            <!--</select>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</p>-->
+            <!--<p class="row">-->
+                <!--<table>-->
+                    <!--<tr>-->
+                        <!--<td>Motorhome:</td>-->
+                        <!--<td>-->
+                            <!--<select th:field="*{motorhomeId}">-->
+                                <!--<option value="-1">&#45;&#45;</option>-->
+                                <!--<option th:each="motorhome : ${motorhomes}"-->
+                                        <!--th:value="${motorhome.id}"-->
+                                        <!--th:text="${motorhome.fullName}"></option>-->
+                            <!--</select>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</p>-->
+
+            <p class="row">
+                <span class="title">Price:</span>
+                <span class="value"><input type="number" th:field="*{price}" min="100" required/></span>
+            </p>
+            <p class="row">
+                <span class="title">Start Date:</span>
+                <span class="value"><input type="date" th:field="*{startDate}" th:min="${minStartDate}" required/></span>
+            </p>
+            <p class="row">
+                <span class="title">End Date:</span>
+                <span class="value"><input type="date" th:field="*{endDate}" th:min="${minEndDate}" required/></span>
+            </p>
+            <p class="row">
+                <span class="title">Pick Up:</span>
+                <span class="value"><input type="text" th:field="*{pickUp}" minlength="1" maxlength="20" required/></span>
+            </p>
+            <p class="row">
+                <span class="title">Drop Off:</span>
+                <span class="value"><input type="text" th:field="*{dropOff}" minlength="1" maxlength="20" required/></span>
+            </p>
+            <!--<p class="row">-->
+                <!--<span class="title">Accessories:</span>-->
+                    <!--<span th:each="accessory : *{accessories}">-->
+                        <!--<div  >-->
+                            <!--<label class="title" th:for="added" th:text="${accessory.title}"></label>-->
+                            <!--<input type="checkbox" th:object="${accessory}" th:field="*{added}"/>-->
+                        <!--</div>-->
+                    <!--</span>-->
+            <!--</p>-->
+
+            <p class="row accessories">
+                <span class="title">Accessories</span>
+                <div th:each="accessory: ${allAccessories}">
+                    <input type="checkbox"
+                           th:field="*{accessories}"
+                           th:value="${accessory}" class="checkbox"/>
+                    <label th:for="${#ids.prev('accessories')}"
+                           th:text="${accessory}"></label>
+                </div>
+            </p>
+
+            <!--<ul>-->
+                <!--<li th:each="accessory: ${allAccessories}">-->
+                    <!--<input type="checkbox"-->
+                    <!--th:field="*{accessories}"-->
+                    <!--th:value="${accessory}"/>-->
+
+                    <!--<label th:for="${#ids.prev('accessories')}"-->
+                           <!--th:text="${accessory}"></label>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <p class="buttons">
+                <input type="submit" value="Create Rental" class="btn create"/>
+            </p>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

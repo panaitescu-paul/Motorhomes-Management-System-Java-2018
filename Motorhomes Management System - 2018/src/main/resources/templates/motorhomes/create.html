@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Motorhome</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-bar">
+            <a href="/motorhomes/" class="page"><span>Motorhomes</span></a>
+            <a href="../" th:text="'Logout: ' + ${currentUser.type} + ' - ' + ${currentUser.name}" class="page btn-logout"><span>Logout</span></a>
+        </div>
+        <div class="create">
+            <h1 class="title">Add New Motorhome</h1>
+            <div th:if="${errorMessage}" th:utext="${errorMessage}"
+                 style="color:red;font-style:italic;">
+            </div>
+            <form th:action="@{/motorhomes/create}" th:object="${motorhomeForm}" method="post">
+                <p class="row">
+                    <span class="title">Brand</span>
+                    <span class="value"><input type="text" th:field="*{brand}" minlength="1" maxlength="25" required></span>
+                </p>
+
+                <p class="row">
+                    <span class="title">Type:</span>
+                    <span class="value">
+                        <select th:field="*{type}" required>
+                            <option value="">--</option>
+                            <option th:each="type : ${types}"
+                                    th:value="${type}"
+                                    th:text="${type}"></option>
+                        </select>
+                    </span>
+                </p>
+
+                <!--<p class="row">-->
+                    <!--<table>-->
+                        <!--<tr>-->
+                            <!--<td>Type:</td>-->
+                            <!--<td>-->
+                                <!--<select name="type">-->
+                                    <!--<option value="">&#45;&#45;</option>-->
+                                    <!--<option th:each="type : ${types}"-->
+                                            <!--th:value="${type}"-->
+                                            <!--th:text="${type}"></option>-->
+                                <!--</select>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                <!--</p>-->
+
+
+                <p class="row">
+                    <span class="title">Model</span>
+                    <span class="value"><input type="text" th:field="*{model}" minlength="1" maxlength="25" required></span>
+                </p>
+                <p class="row">
+                    <span class="title">Year</span>
+                    <span class="value"><input type="number" th:field="*{year}" th:min="${motorhomeForm.minYear}" th:max="${motorhomeForm.maxYear}" required></span>
+                </p>
+                <p class="row">
+                    <span class="title">Base Price</span>
+                    <span class="value"><input type="number" th:field="*{basePrice}" min="100" required></span>
+                </p>
+                <p class="buttons">
+                    <input type="submit" value="Create Motorhome" class="btn create"/>
+                </p>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

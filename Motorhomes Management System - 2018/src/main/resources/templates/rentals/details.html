@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rental Details</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="/rentals/" class="page"><span>Rentals</span></a>
+        <a href="../" th:text="'Logout: ' + ${currentUser.type} + ' - ' + ${currentUser.name}" class="page btn-logout"><span>Logout</span></a>
+    </div>
+    <div class="details">
+        <h1 class="title">Rental Details</h1>
+        <p class="row"><span class="title">Id:</span><span th:text="${rental.id}" class="value"></span></p>
+        <p class="row"><span class="title">Customer:</span><span><a class="value" th:href="@{'../customers/details?id=' + ${rental.customerId}}" th:text="${rental.customerName}"></a></span></p>
+        <p class="row"><span class="title">Motorhome:</span><span><a class="value" th:href="@{'../motorhomes/details?id=' + ${rental.motorhomeId}}" th:text="${rental.motorhomeName}"></a></span></p>
+        <p class="row"><span class="title">Price:</span><span th:text="${rental.price}" class="value"></span></p>
+        <p class="row"><span class="title">Start Date:</span><span th:text="${rental.startDate}" class="value"></span></p>
+        <p class="row"><span class="title">End Date:</span><span th:text="${rental.endDate}" class="value"></span></p>
+        <p class="row"><span class="title">Pick Up:</span><span th:text="${rental.pickUp}" class="value"></span></p>
+        <p class="row"><span class="title">Drop Off:</span><span th:text="${rental.dropOff}" class="value"></span></p>
+        <p class="row"><span class="title">Paid Status:</span><span th:text="${rental.paid} ? 'Paid' : 'Unpaid'" class="value" th:classappend="${rental.paid} ? green : orange"></span></p>
+        <p class="row"><span class="title">Accessories:</span></p>
+        <p class="row" th:each="accessory : ${rental.accessories}">
+            <span class="title"></span>
+            <span th:text="${accessory.title}" class="value"></span>
+        </p>
+
+        <p class="buttons" th:if="${currentUser.getType().equals('Bookkeeper')}">
+            <a th:href="@{'../rentals/pay?id=' + ${rental.id}}" class="btn create">
+                <span th:if="${rental.isPaid() == false}">Pay Rental</span>
+                <span th:if="${rental.isPaid() == true}">Unpay Rental</span>
+            </a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

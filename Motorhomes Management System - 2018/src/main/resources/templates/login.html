@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+
+<body>
+    <div class="container">
+
+        <!--<h1 class="title">Log in</h1>-->
+
+        <div class="login">
+            <div th:each="type : ${userTypes}" class="user-wrapper">
+                <div th:text="${type}" class="user"></div>
+                <a th:href="@{'/login?name=' + ${user.name}}" th:if="${user.type.equals(type)}" th:each="user : ${users}" class="user-name">
+                    <span th:text = "${user.name}"></span>
+                </a>
+            </div>
+        </div>
+
+
+        <!--<div class="login">-->
+            <!--<div th:each="user : ${users}">-->
+                <!--<a th:href="@{'/login?name=' + ${user.name}}" th:text = "${user.name} + ' : ' + ${user.type}" class="user"></a>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</body>
+</html>

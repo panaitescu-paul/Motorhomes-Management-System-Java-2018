@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="${readsAll} ? 'History of Rentals' : 'Active Rentals'"></title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <a href="/motorhomes/" th:if="${!currentUser.getType().equals('Bookkeeper')}" class="page"><span>Motorhomes</span></a>
+            <a href="/customers/" th:if="${!currentUser.getType().equals('Bookkeeper')}" class="page"><span>Customers</span></a>
+            <a href="/rentals/" th:if="${!currentUser.getType().equals('Bookkeeper')}" class="page"><span>Rentals</span></a>
+            <a href="../" th:text="'Logout: ' + ${currentUser.type} + ' - ' + ${currentUser.name}" class="page btn-logout"><span>Logout</span></a>
+        </div>
+        <h1 class="title" th:utext="${readsAll} ? 'History of Rentals' : 'Active Rentals'"></h1>
+        <table class="mh-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Customer</th>
+                    <th>Motorhome</th>
+                    <th>Price</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Pick Up</th>
+                    <th>Drop Off</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="rental : ${rentals}">
+                    <td th:text="${rental.id}"></td>
+                    <td th:text="${rental.customerName}"></td>
+                    <td th:text="${rental.motorhomeName}"></td>
+                    <td th:text="${rental.price}"></td>
+                    <td th:text="${rental.startDate}"></td>
+                    <td th:text="${rental.endDate}"></td>
+                    <td th:text="${rental.pickUp}"></td>
+                    <td th:text="${rental.dropOff}"></td>
+                    <td>
+                        <p class="row">
+                            <a th:href="@{'../rentals/details?id=' + ${rental.id}}">
+                                <span class="btn details">Details</span>
+                            </a>
+                            <a th:href="@{'../rentals/delete?id=' + ${rental.id}}" th:if="${currentUser.getType().equals('Sales Assistant')}">
+                                <span class="btn delete">Delete</span>
+                            </a>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <p class="buttons" th:if="${currentUser.type.equals('Sales Assistant')}">
+                <a href="/rentals/create" th:if="${!readsAll}" class="btn create">
+                    <span>Add New Rental</span>
+                </a>
+
+                <a th:href="${readsAll} ? '/rentals/' : '/rentals/history'" th:utext="${readsAll} ? 'View Active Rentals' : 'View History'" class="btn create">
+                    <span></span>
+                </a>
+
+            </p>
+
+        </div>
+    </div>
+
+</body>
+</html>

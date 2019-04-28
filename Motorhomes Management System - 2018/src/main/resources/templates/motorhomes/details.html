@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Motorhome id' + ${motorhome.id} + ' details'"></title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="/motorhomes/" class="page"><span>Motorhomes</span></a>
+        <a href="../" th:text="'Logout: ' + ${currentUser.type} + ' - ' + ${currentUser.name}" class="page btn-logout"><span>Logout</span></a>
+    </div>
+    <div class="details">
+        <h1 class="title">Motorhome Details</h1>
+        <p class="row"><span class="title">Id:</span><span th:text="${motorhome.id}" class="value"></span></p>
+        <p class="row"><span class="title">Brand:</span><span th:text="${motorhome.brand}" class="value"></span></p>
+        <p class="row"><span class="title">Type:</span><span th:text="${motorhome.type}" class="value"></span></p>
+        <p class="row"><span class="title">Model:</span><span th:text="${motorhome.model}" class="value"></span></p>
+        <p class="row"><span class="title">Year:</span><span th:text="${motorhome.year}" class="value"></span></p>
+        <p class="row"><span class="title">Base Price:</span><span th:text="${motorhome.basePrice}" class="value"></span></p>
+        <p class="row"><span class="title">Clean Status:</span><span th:text="${motorhome.cleaned} ? 'Cleaned' : 'Uncleaned'" class="value" th:classappend="${motorhome.cleaned} ? green : orange"></span></p>
+        <p class="row"><span class="title">Service Status:</span><span th:text="${motorhome.serviced} ? 'Serviced' : 'Unserviced'" class="value" th:classappend="${motorhome.serviced} ? green : orange"></span></p>
+
+        <p class="buttons" th:if="${currentUser.getType().equals('Cleaning Staff')}">
+            <a th:href="@{'../motorhomes/clean?id=' + ${motorhome.id}}" class="btn create">
+                <span th:if="${motorhome.isCleaned() == false}">Motorhome - Cleaned</span>
+                <span th:if="${motorhome.isCleaned() == true}">Motorhome - Not Cleaned</span>
+            </a>
+        </p>
+        <p class="buttons" th:if="${currentUser.getType().equals('Auto Mechanic')}" >
+            <a th:href="@{'../motorhomes/service?id=' + ${motorhome.id}}" class="btn create">
+                <span th:if="${motorhome.isServiced() == false}">Motorhome - Serviced</span>
+                <span th:if="${motorhome.isServiced() == true}">Motorhome - Not Serviced</span>
+            </a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

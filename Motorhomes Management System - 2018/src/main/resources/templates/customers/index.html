@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View All Customers</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-bar">
+        <a href="/motorhomes/" class="page"><span>Motorhomes</span></a>
+        <a href="/customers/" class="page"><span>Customers</span></a>
+        <a href="/rentals/" class="page"><span>Rentals</span></a>
+        <a href="../" th:text="'Logout: ' + ${currentUser.type} + ' - ' + ${currentUser.name}" class="page btn-logout"><span>Logout</span></a>
+    </div>
+
+    <h1 class="title">View All Customers</h1>
+    <table class="mh-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>SSN</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.address}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.ssn}"></td>
+                <td>
+                    <p class="row">
+                        <a th:href="@{'../customers/details?id=' + ${customer.id}}">
+                            <span class="btn details">Details</span>
+                        </a>
+                        <a th:href="@{'../customers/delete?id=' + ${customer.id}}" th:if="${currentUser.getType().equals('Sales Assistant')}">
+                            <span class="btn delete">Delete</span>
+                        </a>
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="buttons">
+        <a href="/customers/create" class="btn create">
+            <span>Add New Customer</span>
+        </a>
+    </p>
+</div>
+
+</body>
+</html>

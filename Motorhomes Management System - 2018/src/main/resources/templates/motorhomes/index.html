@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Motorhomes list</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <a href="/motorhomes/" th:if="${currentUser.getType().equals('Sales Assistant')}" class="page"><span>Motorhomes</span></a>
+            <a href="/customers/" th:if="${currentUser.getType().equals('Sales Assistant')}" class="page"><span>Customers</span></a>
+            <a href="/rentals/" th:if="${currentUser.getType().equals('Sales Assistant')}" class="page"><span>Rentals</span></a>
+            <a href="../" th:text="'Logout: ' + ${currentUser.type} + ' - ' + ${currentUser.name}" class="page btn-logout"><span>Logout</span></a>
+        </div>
+        <h1 class="title">View All Motorhomes</h1>
+        <table class="mh-table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Base Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="motorhome : ${motorhomes}">
+                    <td th:text="${motorhome.id}"></td>
+                    <td th:text="${motorhome.brand}"></td>
+                    <td th:text="${motorhome.type}"></td>
+                    <td th:text="${motorhome.model}"></td>
+                    <td th:text="${motorhome.year}"></td>
+                    <td th:text="${motorhome.basePrice}"></td>
+                    <td>
+                    <p class="row">
+                        <a th:href="@{'../motorhomes/details?id=' + ${motorhome.id}}">
+                            <span class="btn details">Details</span>
+
+                        </a>
+                        <a th:href="@{'../motorhomes/delete?id=' + ${motorhome.id}}" th:if="${currentUser.getType().equals('Sales Assistant')}">
+                            <span class="btn delete">Delete</span>
+                        </a>
+                    </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="buttons">
+            <a href="/motorhomes/create" th:if="${currentUser.getType().equals('Sales Assistant')}" class="btn create">
+                <span>Add New Motorhome</span>
+            </a>
+        </p>
+    </div>
+</body>
+</html>

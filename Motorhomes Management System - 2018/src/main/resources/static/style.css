@@ -1,0 +1,357 @@
+body {
+    font-family: arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+h1.title {
+    text-align: center;
+    color: #10123d;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+/* Table */
+
+.mh-table {
+    width: 1100px;
+    margin: 40px auto;
+}
+
+.mh-table th {
+    background-color: #327ebf;
+    color: #ffffff;
+    height: 40px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    border: 1px solid #325091;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 900;
+}
+
+.mh-table td {
+    padding: 0px 10px;
+    text-align: center;
+}
+
+.mh-table tr {
+    height: 40px;
+    color: #10123d;
+    padding: 5px 10px;
+    padding-left: 20px;
+}
+
+.mh-table tr:hover {
+    background-color: #d6e3ee;
+}
+
+.mh-table tr:nth-child(even) {
+    background-color: #f3f4f3;
+}
+
+/* Buttons */
+
+.mh-table a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.mh-table a:hover{
+    text-decoration: none;
+}
+
+.mh-table .row {
+    text-align: center;
+}
+
+.mh-table .row .btn {
+    border-radius: 3px;
+    padding: 8px;
+    margin: 0px 3px;
+    color: #ffff;
+}
+
+.mh-table .row .btn.delete {
+    border: 1px solid #ce1f23;
+    background-color: #e23236;
+}
+
+.mh-table .row .btn.delete:hover {
+    background-color: #ce3236;
+}
+
+.mh-table .row .btn.details {
+    border: 1px solid #10a422;
+    background-color: #10c724;
+}
+
+.mh-table .row .btn.details:hover {
+    background-color: #10ba24;
+}
+
+/* Buttons */
+a {
+    text-decoration: none;
+    /*color: #ffff;*/
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+
+.buttons .btn.create {
+    border: 1px solid #10a422;
+    background-color: #10c724;
+    color: #ffff;
+    border-radius: 3px;
+    font-size: 18px;
+    padding: 14px;
+    margin: 10px 10px;
+
+}
+
+.buttons .btn.create:hover {
+    background-color: #10ba24;
+}
+
+/* Details Page */
+
+.details {
+    width: 400px;
+    margin: 40px auto;
+    border: 1px solid #1080c7;
+    border-radius: 3px;
+    padding: 0px 50px;
+    padding-bottom: 30px;
+}
+
+.details h1.title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.details .row {
+    padding: 3px 0px;
+    margin-top: 8px;
+}
+
+.details .row .title {
+    border-radius: 3px;
+    padding: 5px;
+    width: 200px;
+    display: inline-block;
+}
+
+.details .row .value {
+    border: 1px solid #325091;
+    background-color: #327ebf;
+    color: #ffff;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: right;
+}
+
+.details .row .value.green {
+    border: 1px solid #10a422;
+    background-color: #10c724;
+    color: #ffff;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: right;
+}
+
+.details .row .value.orange {
+    border: 1px solid #d1640a;
+    background-color: #de7226;
+    color: #ffff;
+    border-radius: 3px;
+    padding: 5px;
+    text-align: right;
+}
+
+.details .buttons {
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+
+
+/* Create Page */
+
+.create input {
+    display: inline-block;
+    width: 160px;
+    height: 30px;
+    color: #10123d;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    text-decoration: none;
+    padding: 3px 5px;
+    font-size: 16px;
+}
+
+.create input:focus {
+    border: 1px solid #1080c7;
+}
+
+input:focus,
+button:focus {
+    outline: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.create {
+    width: 400px;
+    margin: 40px auto;
+    border: 1px solid #1080c7;
+    border-radius: 3px;
+    padding: 10px 50px;
+
+}
+
+.create h1 {
+    text-align: center;
+}
+
+.create .row {
+    padding: 3px 0px;
+    margin-top: 8px;
+}
+
+.create input.checkbox {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    text-decoration: none;
+    margin-left: 180px;
+}
+
+.create label {
+    width: 180px;
+    display: inline-block;
+    padding: 3px 5px;
+
+}
+
+.create .row .title {
+    border-radius: 3px;
+    padding: 5px;
+    width: 200px;
+    display: inline-block;
+}
+
+.create select {
+    width: 170px;
+}
+
+/**/
+
+.create .buttons {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+
+.create .buttons .btn.create {
+    margin: 20px auto;
+    height: 50px;
+    width: auto;
+    /*padding: 0px 10px;*/
+}
+
+/* Login */
+
+.container .login {
+    margin: 40px auto;
+    border-radius: 3px;
+}
+
+.container .login .user-wrapper {
+    width: 270px;
+    height: 300px;
+    display: inline-table;
+}
+
+.container .login .user {
+    width: 200px;
+    margin: 10px auto;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    padding: 12px 15px;
+    display: block;
+    border: 1px solid #10123d;
+    background-color: #327ebf;
+    text-align: center;
+    font-size: 18px;
+    line-height: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.container .login .user-name {
+    width: 100px;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: block;
+    border: 1px solid #10a422;
+    background-color: #10c724;
+    text-align: center;
+    font-size: 14px;
+    line-height: 14px;
+    color: #fff;
+    /*text-transform: uppercase;*/
+    font-weight: 900;
+}
+
+.container .login .user-name:hover {
+    background-color: #10ba24;
+}
+
+/* Navigation */
+
+.container .nav-bar {
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid rgba(31, 38, 76, 0.13);
+}
+
+.container .nav-bar .page {
+    border: 1px solid rgba(31, 38, 76, 0.13);
+    background-color: rgba(35, 76, 117, 0.04);
+    color: rgba(41, 59, 118, 0.67);
+    border-radius: 3px;
+    padding: 5px;
+    margin: 20px 5px;
+    display: inline-block;
+
+ }
+
+.container .nav-bar .page:hover {
+    background-color: rgba(31, 38, 76, 0.09);
+}
+
+.container .nav-bar .page.btn-logout {
+    float: right;
+}

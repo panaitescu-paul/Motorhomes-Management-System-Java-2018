@@ -1,0 +1,16 @@
+Pages:
+-login (chooses a box)
+-mainPage (redirects to one of these)
+	-sales assitant: has 3 pages for each table: customers, rentals, motorhomes (defaults to the rentals page)
+		-rentals page: list of rentals, "add new" button
+			-single rental page: all rental info, all customer info, all motorhome info, list of attached accessories, cancel rental button
+			-new rental page elements: choose an existing customer, stardate, enddate, pickup, dropoff, choose an available motorhome, choose accesories (list), show price, confirm rental
+		-customers page: list of customers, "add new" button
+			-single customer page: details, current rental, rental history
+			-new customer page elements: firstname, lastname, email, address, phone, ssn
+		-motorhomes page: list of motorhomes, "add new" button
+			-single motorhome page: details, current rental, current accessories (if current rental is not null)
+			-new motorhome page elements: brand, type, model, year, basePrice,
+	-auto mechanic: has one page: motorhomes
+		-motorhomes page: list of motorhomes, "add new" button
+			-single motorhome page: details, current rental, current accessories (if current rental is not null), "Inspect" button (sets the new date to today)
