@@ -1,4 +1,4 @@
-# Motorhomes Management System - 2018
+# Motorhomes Management System - Java - 2018
 
 ### Features:
 - Login access to 4 types of users
